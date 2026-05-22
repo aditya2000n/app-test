@@ -2,16 +2,17 @@ FROM node:alpine
 
 WORKDIR /app
 
-# # Copy package files first for better layer caching
-# COPY package*.json ./
-# Copy application source
 COPY . .
+
+RUN chown -R demon:demon /app
 
 # Install dependencies as root
 RUN npm install
 
 # Build the application
 RUN npm run build
+
+USER demon
 
 EXPOSE 3000
 
