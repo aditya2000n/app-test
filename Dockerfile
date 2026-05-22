@@ -2,16 +2,23 @@ FROM node:alpine
 
 WORKDIR /app
 
+# Copy package files first for better layer caching
+COPY package*.json ./
+
+# Install dependencies as root
+RUN npm install
+
+# Copy application source
 COPY . .
 
-USER daemon
+# Build the application
+RUN npm run build
 
-RUN npm install && build
-
+# Set proper ownership
 RUN chown -R daemon:daemon /app
 
-RUN chmod -R 777 /app
-
+# Switch to non-root user
+USER daemon
 
 EXPOSE 3000
 
