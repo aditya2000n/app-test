@@ -6,7 +6,7 @@ COPY . .
 
 USER daemon
 
-RUN npm install && npm build
+RUN npm install && build
 
 EXPOSE 3000
 
