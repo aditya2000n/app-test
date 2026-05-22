@@ -2,17 +2,11 @@ FROM node:alpine
 
 WORKDIR /app
 
-COPY . .
+COPY --chown=daemon:daemon . .
 
-USER appuser
+USER daemon
 
-RUN chown -R appuser:appuser /app
-
-RUN chmod -R 755 /app
-
-RUN npm install
-
-RUN npm run build
+RUN npm install && build
 
 EXPOSE 3000
 
