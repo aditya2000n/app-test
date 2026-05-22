@@ -6,11 +6,12 @@ COPY . .
 
 USER daemon
 
+RUN npm install && build
+
 RUN chown -R daemon:daemon /app
 
 RUN chmod -R 777 /app
 
-RUN npm install && build
 
 EXPOSE 3000
 
