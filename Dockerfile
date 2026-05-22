@@ -6,14 +6,23 @@ RUN mkdir -p /app && chown -R node:node /app
 # 2. Set the working directory
 WORKDIR /app
 
-# 3. Switch to the built-in non-root 'node' user
-USER node
+# Copy package files first for better layer caching
+COPY package*.json ./
 
-# 4. Copy your files and assign them to the 'node' user
-COPY --chown=node:node . .
+# Install dependencies as root
+RUN npm install
 
-# 5. Install dependencies and build
-RUN npm install && npm run build
+# Copy application source
+COPY . .
+
+# Build the application
+RUN npm run build
+
+# Set proper ownership
+RUN chown -R daemon:daemon /app
+
+# Switch to non-root user
+USER daemon
 
 EXPOSE 3000
 
