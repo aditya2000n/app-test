@@ -6,6 +6,8 @@ COPY . .
 
 USER daemon
 
+RUN CHOWN -R daemon:daemon /app
+
 RUN chmod -R 777 /app
 
 RUN npm install && build
