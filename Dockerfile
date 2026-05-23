@@ -19,11 +19,11 @@ USER node
 # install the dependencies
 RUN npm ci --omit=dev
 
-# build the application
-RUN npm run build
-
 # copy the rest of the application code to the working directory
 COPY --chown=node:node . .
+
+# build the application
+RUN npm run build
 
 # expose the port the application is running on
 EXPOSE 3000
