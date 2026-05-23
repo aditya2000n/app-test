@@ -2,6 +2,12 @@ pipeline {
 
     agent any 
 
+    environement {
+        DESTINATION_SERVER = '192.168.0.109'
+        DESTINATION_USER = 'aditya'
+        SSH_CRED = 'adityavm01-sshkey'
+    }
+
     stages {
         stage('Checkout scm') {
             steps {
@@ -13,8 +19,8 @@ pipeline {
         stage('Build Docker Image and Run Container') {
             steps {
                 echo "Login to the server"
-                sshagent (['adityavm01-sshkey']) {
-                    withEnv(['DOCKER_HOST=ssh://aditya@192.168.0.109']) {
+                sshagent (["${SSH_CRED}"]) {
+                    withEnv(["DOCKER_HOST=ssh://${DESTINATION_USER}@${DESTINATION_SERVER}"]) {
                         echo "Stop and remove existing container"
                         sh "docker stop app-test || true && docker rm app-test || true"
                         echo "Build new Docker image"
