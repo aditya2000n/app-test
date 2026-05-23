@@ -2,7 +2,7 @@ pipeline {
 
     agent any 
 
-    environement {
+    environment {
         DESTINATION_SERVER = '192.168.0.109'
         DESTINATION_USER = 'aditya'
         SSH_CRED = 'adityavm01-sshkey'
