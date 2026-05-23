@@ -13,6 +13,8 @@ WORKDIR /app
 # copy the package.json and package-lock.json to the working directory
 COPY --chown=node:node pakcage*.json ./
 
+RUN ls -la
+
 # switch to node user
 USER node
 
