@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo "Login to the server"
                 sshagent (['adityavm01-sshkey']) {
-                    withEnv(['DOCKER_HOST=ssh://192.168.0.109']) {
+                    withEnv(['DOCKER_HOST=ssh://aditya@192.168.0.109']) {
                         echo "Stop and remove existing container"
                         sh "docker stop app-test || true && docker rm app-test || true"
                         echo "Build new Docker image"
