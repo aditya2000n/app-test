@@ -26,12 +26,12 @@ pipeline {
                 
             }
         }
+    }
 
-        post {
-            always {
-                echo "Pipeline completed"
-                sh "docker system prune -f"
-            }
+    post {
+        always {
+            echo "Pipeline completed"
+            sh "docker system prune -f"
         }
     }
 }
