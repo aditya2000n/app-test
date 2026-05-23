@@ -1,6 +1,7 @@
 FROM node:alpine
 
-# 2. Set the working directory
+RUN mkdir -p /app && chown -R node:node /app
+
 WORKDIR /app
 
 USER node
