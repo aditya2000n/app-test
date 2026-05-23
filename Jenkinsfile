@@ -26,7 +26,7 @@ pipeline {
                         echo "Build new Docker image"
                         sh "docker build -t app-test:latest ."
                         echo "Run new Docker container"
-                        sh "docker run -d --name app-test -p 3000:3000 app-test:latest"
+                        sh "docker run -d --name app-test -p 80:80 app-test:latest"
                     }
                 }
                 
