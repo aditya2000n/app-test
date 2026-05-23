@@ -11,7 +11,7 @@ RUN mkdir -p /app && chown -R node:node /app
 WORKDIR /app
 
 # copy the package.json and package-lock.json to the working directory
-COPY --chown=node:node pakcage*.json ./
+COPY --chown=node:node package*.json ./
 
 RUN ls -la
 
